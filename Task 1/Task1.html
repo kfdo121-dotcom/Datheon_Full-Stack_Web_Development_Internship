@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kevin Fernando — Software Developer</title>
+<meta name="description" content="Portfolio of Kevin Fernando, a BSc IT Computing graduate building full-stack apps with C#, ASP.NET, Java and the web stack.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f6fb; --surface:#ffffff; --text:#14172b; --muted:#555b78;
+  --line:#d9deee; --accent:#3d3df0; --accent-ink:#ffffff; --tag:#e6e8ff;
+  --head:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,sans-serif;
+  --max:1080px;
+}
+:root[data-theme="dark"]{
+  --bg:#0d1020; --surface:#161a31; --text:#eceefb; --muted:#9aa1c7;
+  --line:#2a3055; --accent:#8f94ff; --accent-ink:#0d1020; --tag:#232950;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--bg);color:var(--text);font:400 1rem/1.65 var(--body);transition:background .25s,color .25s}
+a{color:inherit}
+h1,h2,h3{font-family:var(--head);line-height:1.1;letter-spacing:-.02em}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}
+section{padding:4.5rem 0}
+h2{font-size:clamp(1.8rem,5vw,2.6rem);margin-bottom:2rem}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font:800 1.2rem var(--head);text-decoration:none}
+nav ul{display:none;list-style:none;padding:0}
+nav a{text-decoration:none;color:var(--muted);font-weight:500}
+nav a:hover{color:var(--text)}
+.tools{display:flex;gap:.5rem}
+.icon-btn{background:none;border:1px solid var(--line);color:var(--text);width:40px;height:40px;border-radius:10px;cursor:pointer;font-size:1.1rem}
+nav.open ul{display:flex;flex-direction:column;gap:1rem;position:absolute;left:0;right:0;top:64px;background:var(--bg);padding:1.25rem;border-bottom:1px solid var(--line)}
+
+/* hero */
+.hero{padding:5rem 0 4rem}
+.hero h1{font-size:clamp(2.8rem,11vw,6.5rem);font-weight:800;max-width:11ch}
+.hero p{max-width:52ch;margin:1.5rem 0 2rem;color:var(--muted);font-size:1.15rem}
+.btns{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-block;padding:.8rem 1.4rem;border-radius:10px;font-weight:500;text-decoration:none;border:1px solid var(--line);cursor:pointer;background:none;color:var(--text);font:inherit;font-weight:500}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.now{margin-top:3rem;display:inline-flex;gap:.6rem;align-items:center;padding:.5rem 1rem;border:1px solid var(--line);border-radius:99px;background:var(--surface);font-size:.95rem;color:var(--muted)}
+.dot{width:9px;height:9px;border-radius:50%;background:#22b573;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+
+/* about */
+.about{display:grid;gap:2rem}
+.about p+p{margin-top:1rem}
+.facts{list-style:none;padding:0;display:grid;gap:.75rem}
+.facts li{display:flex;justify-content:space-between;gap:1rem;border-bottom:1px solid var(--line);padding-bottom:.6rem}
+.facts span{color:var(--muted)}
+
+/* skills */
+.skills{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.25rem}
+.skill h3{font-size:1.1rem;margin-bottom:.75rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;padding:0}
+.tags li{background:var(--tag);padding:.15rem .65rem;border-radius:99px;font-size:.88rem}
+
+/* projects */
+.projects{display:grid;gap:1.25rem}
+.project{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;gap:.9rem;text-align:left;font:inherit;color:inherit;cursor:pointer;transition:border-color .2s}
+.project:hover{border-color:var(--accent)}
+.project h3{font-size:1.4rem}
+.project p{color:var(--muted)}
+.project .more{margin-top:auto;color:var(--accent);font-weight:500}
+
+dialog{margin:auto;width:min(92vw,560px);border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--text);padding:1.75rem}
+dialog::backdrop{background:rgba(5,8,25,.6)}
+dialog h3{font-size:1.7rem;margin-bottom:.75rem}
+dialog p{margin-bottom:1rem;color:var(--muted)}
+dialog .btns{margin-top:1.25rem}
+dialog[open]{animation:pop .2s ease-out}
+@keyframes pop{from{transform:scale(.96);opacity:0}}
+
+/* resume */
+.timeline{list-style:none;padding:0;display:grid;gap:1.5rem}
+.timeline li{display:grid;gap:.15rem;border-left:3px solid var(--accent);padding-left:1rem}
+.timeline time{color:var(--muted);font-size:.9rem}
+
+/* contact */
+.contact{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:2rem}
+.links{display:grid;gap:.75rem;margin-top:1.5rem;list-style:none;padding:0}
+.links a{display:flex;justify-content:space-between;padding:.9rem 1.1rem;border:1px solid var(--line);border-radius:10px;text-decoration:none}
+.links a:hover{border-color:var(--accent)}
+footer{padding:2rem 0;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+
+@media (min-width:760px){
+  nav ul{display:flex;gap:1.75rem}
+  #menu{display:none}
+  .about{grid-template-columns:1.4fr 1fr;gap:4rem}
+  .projects{grid-template-columns:repeat(2,1fr)}
+  .links{grid-template-columns:repeat(3,1fr)}
+  section{padding:6rem 0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top">kevin.dev</a>
+    <nav id="nav" aria-label="Main">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="tools">
+      <button class="icon-btn" id="theme" aria-label="Switch to dark theme">☾</button>
+      <button class="icon-btn" id="menu" aria-label="Open menu" aria-expanded="false" aria-controls="nav">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1>I build full-stack apps that work.</h1>
+      <p>I'm Kevin Fernando, a BSc IT Computing graduate (Upper Second Class Honours, London Metropolitan University). I build full-stack systems with C#, ASP.NET, Java and the modern web stack.</p>
+      <div class="btns">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+      <div class="now"><span class="dot"></span> Open to junior developer roles</div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about">
+      <div>
+        <h2>About me</h2>
+        <p>I'm a software developer from Ja-Ela, Sri Lanka. I studied computing step by step, from a certificate and diploma at NIBM to an HND with Pearson and a BSc with London Metropolitan University, graduating with Upper Second Class Honours.</p>
+        <p>My projects cover booking, management and e-commerce style systems, planned with UML diagrams and Figma designs and built in C#, Java and ASP.NET Core MVC. I'm now studying Artificial Intelligence at IIT.</p>
+      </div>
+      <ul class="facts" aria-label="Quick facts">
+        <li><span>Based in</span> Ja-Ela, Sri Lanka</li>
+        <li><span>Degree</span> BSc IT Computing (2:1)</li>
+        <li><span>Studying</span> Artificial Intelligence</li>
+        <li><span>Languages</span> English, Sinhala</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2>Tech stack</h2>
+      <div class="skills"><div class="skill"><h3>Languages</h3><ul class="tags"><li>C#</li><li>Java</li><li>Python</li><li>C++</li><li>PHP</li><li>JavaScript</li><li>SQL</li><li>HTML</li><li>CSS</li></ul></div><div class="skill"><h3>Frameworks</h3><ul class="tags"><li>ASP.NET Core MVC</li><li>Entity Framework</li><li>C# Identity</li><li>Laravel</li><li>Node.js</li><li>React.js</li><li>Flutter</li><li>Bootstrap</li></ul></div><div class="skill"><h3>Databases</h3><ul class="tags"><li>MySQL</li><li>MongoDB</li><li>SQL Server</li><li>PostgreSQL</li><li>SQLite</li></ul></div><div class="skill"><h3>Tools</h3><ul class="tags"><li>GitHub</li><li>VS Code</li><li>Visual Studio 2022</li><li>Postman</li><li>phpMyAdmin</li><li>Android Studio</li><li>NetBeans</li></ul></div><div class="skill"><h3>Soft skills</h3><ul class="tags"><li>Effective communication</li><li>Presentation skills</li></ul></div></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2>Featured projects</h2>
+      <div class="projects" id="project-list"></div>
+    </div>
+  </section>
+
+  <section id="resume">
+    <div class="wrap">
+      <h2>Education & credentials</h2>
+      <ol class="timeline"><li><time>2025 – Present</time><strong>Artificial Intelligence Course</strong><span>Informatics Institute of Technology (IIT), Bambalapitiya. Currently following.</span></li><li><time>2025 – 2026</time><strong>BSc (Hons) IT Computing</strong><span>London Metropolitan University, via ESOFT Metro Campus. Graduated with Upper Second Class Honours.</span></li><li><time>2025 – 2026</time><strong>Cambridge English Course (A2)</strong><span>IIT, Bambalapitiya.</span></li><li><time>2023 – 2025</time><strong>HND, IT Application Development & Testing</strong><span>Pearson UK, ESOFT Metro Campus.</span></li><li><time>2021 – 2022</time><strong>Diploma in Computer System Design</strong><span>NIBM, Colombo.</span></li><li><time>2020</time><strong>Certificate in Computer Science</strong><span>NIBM, Colombo.</span></li><li><time>2020</time><strong>Spoken English & Grammar Course</strong><span>Institute of British Examinations, Negombo.</span></li><li><time>2019</time><strong>G.C.E. O/L</strong><span>De Mazenod College, Kandana.</span></li></ol>
+      <div class="btns" style="margin-top:2rem"><a class="btn primary" href="resume.pdf" download>Download full resume (PDF)</a></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <h2 style="margin-bottom:.5rem">Let's work together</h2>
+        <p>Looking for a developer or want to talk about a project? Email is the fastest way to reach me.</p>
+        <ul class="links">
+          <li><a href="mailto:gkcfernando10@outlook.com">Email <span>gkcfernando10@outlook.com</span></a></li>
+          <li><a href="https://github.com/your-username" target="_blank" rel="noopener">GitHub <span>your-username</span></a></li>
+          <li><a href="https://linkedin.com/in/your-username" target="_blank" rel="noopener">LinkedIn <span>your-username</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© <span id="year"></span> Galkissage Kevin Chinthana Fernando. Built with plain HTML, CSS and JavaScript.</div></footer>
+
+<dialog id="modal" aria-labelledby="m-title">
+  <h3 id="m-title"></h3>
+  <p id="m-desc"></p>
+  <ul class="tags" id="m-tags"></ul>
+  <div class="btns">
+    <a class="btn primary" id="m-live" target="_blank" rel="noopener">Live demo</a>
+    <a class="btn" id="m-code" target="_blank" rel="noopener">Source code</a>
+    <button class="btn" id="m-close">Close</button>
+  </div>
+</dialog>
+
+<script>
+// Add live and code links to any project to show buttons in its popup.
+const projects = [
+ {
+  "title": "Organic Food Management System",
+  "short": "A full-stack system for managing organic food products.",
+  "desc": "A full-stack Organic Food Management System built with C#.",
+  "tags": [
+   "C#",
+   "Full-stack"
+  ],
+  "live": "",
+  "code": ""
+ },
+ {
+  "title": "User Management System",
+  "short": "A full-stack app for managing user accounts.",
+  "desc": "A full-stack User Management System built with C#.",
+  "tags": [
+   "C#",
+   "Full-stack"
+  ],
+  "live": "",
+  "code": ""
+ },
+ {
+  "title": "Hotel Booking Reservation System",
+  "short": "A full-stack hotel reservation system in Java.",
+  "desc": "A full-stack Hotel Booking Reservation System developed with Java.",
+  "tags": [
+   "Java",
+   "Full-stack"
+  ],
+  "live": "",
+  "code": ""
+ },
+ {
+  "title": "Student Management Website",
+  "short": "A student management site on ASP.NET Core MVC.",
+  "desc": "A full-stack Student Management website created with ASP.NET Core MVC.",
+  "tags": [
+   "ASP.NET Core MVC",
+   "Full-stack"
+  ],
+  "live": "",
+  "code": ""
+ },
+ {
+  "title": "Circuit Booking Reservation System",
+  "short": "A booking system designed with Figma and UML.",
+  "desc": "A full-stack Circuit Booking Reservation System developed using Figma UI designs and UML diagrams.",
+  "tags": [
+   "Figma",
+   "UML",
+   "Full-stack"
+  ],
+  "live": "",
+  "code": ""
+ },
+ {
+  "title": "Agriculture Website",
+  "short": "An agriculture website planned with UML diagrams.",
+  "desc": "A full-stack Agriculture website developed with ASP.NET and UML diagrams.",
+  "tags": [
+   "ASP.NET",
+   "UML",
+   "Full-stack"
+  ],
+  "live": "",
+  "code": ""
+ }
+];
+
+const $ = id => document.getElementById(id);
+const root = document.documentElement;
+
+// Render project cards
+$("project-list").innerHTML = projects.map((p,i)=>`
+  <button class="project" data-i="${i}" aria-haspopup="dialog">
+    <h3>${p.title}</h3><p>${p.short}</p>
+    <span class="more">View details</span>
+  </button>`).join("");
+
+// Modal
+const modal = $("modal");
+$("project-list").addEventListener("click", e=>{
+  const card = e.target.closest(".project"); if(!card) return;
+  const p = projects[card.dataset.i];
+  $("m-title").textContent = p.title;
+  $("m-desc").textContent = p.desc;
+  $("m-tags").innerHTML = p.tags.map(t=>`<li>${t}</li>`).join("");
+  $("m-live").hidden = !p.live; $("m-live").href = p.live || "#";
+  $("m-code").hidden = !p.code; $("m-code").href = p.code || "#";
+  modal.showModal();
+});
+$("m-close").onclick = () => modal.close();
+modal.addEventListener("click", e=>{ if(e.target===modal) modal.close(); });
+
+// Theme (saved choice, else system preference)
+function setTheme(t){
+  root.dataset.theme = t;
+  $("theme").textContent = t==="dark" ? "☀" : "☾";
+  $("theme").setAttribute("aria-label", t==="dark" ? "Switch to light theme" : "Switch to dark theme");
+}
+let saved = null;
+try{ saved = localStorage.getItem("theme"); }catch(e){}
+setTheme(saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+$("theme").onclick = () => {
+  const next = root.dataset.theme==="dark" ? "light" : "dark";
+  setTheme(next);
+  try{ localStorage.setItem("theme", next); }catch(e){}
+};
+
+// Mobile menu
+const nav = $("nav"), menu = $("menu");
+menu.onclick = () => {
+  const open = nav.classList.toggle("open");
+  menu.setAttribute("aria-expanded", open);
+};
+nav.addEventListener("click", e=>{
+  if(e.target.tagName==="A"){ nav.classList.remove("open"); menu.setAttribute("aria-expanded","false"); }
+});
+
+$("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
