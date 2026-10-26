@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skycast — Live Weather Search</title>
+<meta name="description" content="Search any city for live weather, humidity, wind, pressure and a 5-day forecast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-sky="day">
+<main class="app">
+  <header>
+    <h1>Skycast</h1>
+    <div class="seg" role="group" aria-label="Units">
+      <button id="u-c" aria-pressed="true">°C</button>
+      <button id="u-f" aria-pressed="false">°F</button>
+    </div>
+  </header>
+
+  <form id="search" role="search" autocomplete="off">
+    <input id="city" type="search" placeholder="Search a city, e.g. Tokyo" aria-label="City name" maxlength="80">
+    <button type="submit">Search</button>
+  </form>
+  <div class="chips" id="chips" aria-label="Quick picks"></div>
+
+  <div id="loading" class="loading" hidden role="status"><span class="spinner"></span> Fetching weather…</div>
+  <div id="error" class="error" hidden role="alert"></div>
+
+  <section id="result" class="glass" hidden aria-live="polite">
+    <div class="place">
+      <h2 id="place"></h2>
+      <p id="when"></p>
+    </div>
+    <div class="now">
+      <span id="icon" class="big-icon" aria-hidden="true"></span>
+      <div>
+        <div id="temp" class="temp"></div>
+        <div id="desc" class="desc"></div>
+      </div>
+    </div>
+    <dl class="metrics">
+      <div><dt>Feels like</dt><dd id="feels"></dd></div>
+      <div><dt>Humidity</dt><dd id="humidity"></dd></div>
+      <div><dt>Wind</dt><dd id="wind"></dd></div>
+      <div><dt>Pressure</dt><dd id="pressure"></dd></div>
+    </dl>
+    <h3>5-day forecast</h3>
+    <div id="forecast" class="forecast"></div>
+  </section>
+
+  <footer>Data by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a></footer>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
